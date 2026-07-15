@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NobuTok</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- АВТОРИЗАЦИЯ -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <div class="logo-icon"><i class="fa-solid fa-feather"></i></div>
+                <h1>Nobu<span style="color:#3b82f6;">Tok</span></h1>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Вход</button>
+                <button class="auth-tab" data-tab="register">Регистрация</button>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <input type="email" id="loginEmail" placeholder="Email" class="auth-input" required>
+                <input type="password" id="loginPassword" placeholder="Пароль" class="auth-input" required>
+                <button type="submit" class="auth-btn">Войти</button>
+                <div class="auth-error" id="loginError"></div>
+            </form>
+            <form id="registerForm" class="auth-form hidden">
+                <input type="text" id="regNickname" placeholder="Никнейм" class="auth-input" maxlength="30" required>
+                <input type="email" id="regEmail" placeholder="Email" class="auth-input" required>
+                <input type="password" id="regPassword" placeholder="Пароль (мин. 6 символов)" class="auth-input" minlength="6" required>
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+                <div class="auth-error" id="regError"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ПРИЛОЖЕНИЕ -->
+    <div class="app hidden" id="appContainer">
+        <!-- Главная лента -->
+        <div class="screen active" id="screenFeed">
+            <div class="video-feed" id="videoFeed"></div>
+        </div>
+        <!-- Лента подписок -->
+        <div class="screen" id="screenFollowing">
+            <div class="video-feed" id="followingFeed"></div>
+        </div>
+
+        <!-- Нижнее меню -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-screen="feed"><i class="fa-solid fa-house"></i></button>
+            <button class="nav-item" data-screen="following"><i class="fa-solid fa-users"></i></button>
+            <button class="nav-item" data-screen="upload"><i class="fa-solid fa-plus"></i></button>
+            <button class="nav-item" data-screen="profile"><i class="fa-solid fa-user"></i></button>
+        </nav>
+
+        <!-- Загрузка -->
+        <div class="upload-overlay hidden" id="uploadOverlay">
+            <div class="upload-card">
+                <h3>Новое видео</h3>
+                <input type="file" id="videoFile" accept="video/*" class="upload-input">
+                <textarea id="videoCaption" placeholder="Описание..." maxlength="200" class="upload-caption"></textarea>
+                <button class="upload-btn" id="uploadBtn">Опубликовать</button>
+                <button class="upload-cancel" id="uploadCancel">Отмена</button>
+                <div class="upload-progress hidden" id="uploadProgress">Загрузка...</div>
+            </div>
+        </div>
+
+        <!-- Профиль (свой) -->
+        <div class="profile-overlay hidden" id="profileOverlay">
+            <div class="profile-card">
+                <div class="profile-avatar" id="profileAvatar">?</div>
+                <h2 id="profileNickname">Гость</h2>
+                <div class="profile-stats">
+                    <span id="profileFollowers">0 подписчиков</span> ·
+                    <span id="profileFollowing">0 подписок</span> ·
+                    <span id="profileVideoCount">0 видео</span>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Выйти</button>
+            </div>
+        </div>
+
+        <!-- Чужой профиль -->
+        <div class="profile-overlay hidden" id="userProfileOverlay">
+            <div class="profile-card">
+                <div class="profile-avatar" id="userProfileAvatar">?</div>
+                <h2 id="userProfileNickname"></h2>
+                <div class="profile-stats">
+                    <span id="userProfileFollowers">0 подписчиков</span> ·
+                    <span id="userProfileVideoCount">0 видео</span>
+                </div>
+                <button class="follow-btn" id="userFollowBtn">Подписаться</button>
+                <button class="upload-cancel" id="closeUserProfile">Закрыть</button>
+            </div>
+        </div>
+
+        <!-- Комментарии -->
+        <div class="comments-overlay hidden" id="commentsOverlay">
+            <div class="comments-card">
+                <h3>Комментарии</h3>
+                <div class="comments-list" id="commentsList"></div>
+                <div class="comments-input-area">
+                    <input type="text" id="commentInput" placeholder="Ваш комментарий..." class="comment-input">
+                    <button id="sendCommentBtn" class="comment-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+                <button class="upload-cancel" id="closeComments">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
