@@ -1,0 +1,2895 @@
+/* ==========================================================
+   NobuChirp
+   Premium Social UI
+   style.css
+   ========================================================== */
+
+
+/* ==========================================================
+   Переменные
+   ========================================================== */
+
+:root {
+
+    --bg:
+        #07070b;
+
+    --card:
+        #111118;
+
+    --card-hover:
+        #171722;
+
+    --border:
+        #252535;
+
+    --text:
+        #ffffff;
+
+    --muted:
+        #8b8b9a;
+
+    --purple:
+        #8b5cf6;
+
+    --blue:
+        #22d3ee;
+
+    --red:
+        #ff4567;
+
+    --green:
+        #22c55e;
+
+    --shadow:
+        0 20px 60px
+        rgba(
+            0,
+            0,
+            0,
+            .45
+        );
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   Сброс
+   ========================================================== */
+
+
+* {
+
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+}
+
+
+
+html {
+
+    scroll-behavior:
+        smooth;
+
+}
+
+
+
+body {
+
+    min-height:
+        100vh;
+
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(
+                139,
+                92,
+                246,
+                .18
+            ),
+            transparent 35%
+        ),
+
+        var(--bg);
+
+
+    color:
+        var(--text);
+
+
+    font-family:
+
+        Inter,
+
+        -apple-system,
+
+        BlinkMacSystemFont,
+
+        "Segoe UI",
+
+        sans-serif;
+
+
+    overflow-x:
+        hidden;
+
+}
+
+
+
+
+
+button,
+input,
+textarea {
+
+    font-family:
+        inherit;
+
+}
+
+
+
+button {
+
+    cursor:
+        pointer;
+
+    border:
+        0;
+
+}
+
+
+
+img {
+
+    max-width:
+        100%;
+
+    display:
+        block;
+
+}
+
+
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   Общие экраны
+   ========================================================== */
+
+
+.screen {
+
+    min-height:
+        100vh;
+
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        center;
+
+
+    padding:
+        20px;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Экран загрузки
+   ========================================================== */
+
+
+#loadingScreen {
+
+    background:
+        var(--bg);
+
+}
+
+
+
+.loader {
+
+    font-size:
+        42px;
+
+
+    font-weight:
+        900;
+
+
+    letter-spacing:
+        3px;
+
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+
+    -webkit-background-clip:
+        text;
+
+
+    color:
+        transparent;
+
+
+    animation:
+        logoPulse 2s infinite;
+
+}
+
+
+
+
+@keyframes logoPulse {
+
+
+    0%,
+    100% {
+
+        opacity:
+            .6;
+
+        transform:
+            scale(.95);
+
+    }
+
+
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Авторизация
+   ========================================================== */
+
+
+#authScreen {
+
+    background:
+        var(--bg);
+
+}
+
+
+
+.auth-card {
+
+    width:
+        380px;
+
+
+    background:
+        rgba(
+            17,
+            17,
+            24,
+            .85
+        );
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    border-radius:
+        24px;
+
+
+    padding:
+        32px;
+
+
+    box-shadow:
+        var(--shadow);
+
+
+    backdrop-filter:
+        blur(20px);
+
+}
+
+
+
+
+.auth-card h1 {
+
+    text-align:
+        center;
+
+
+    font-size:
+        34px;
+
+
+    margin-bottom:
+        25px;
+
+
+}
+
+
+
+
+.auth-tabs {
+
+    display:
+        flex;
+
+
+    gap:
+        10px;
+
+
+    margin-bottom:
+        20px;
+
+}
+
+
+
+
+.auth-tabs button {
+
+    flex:
+        1;
+
+
+    padding:
+        12px;
+
+
+    border-radius:
+        12px;
+
+
+    background:
+        #191923;
+
+
+    color:
+        var(--muted);
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+
+
+.auth-tabs button.active {
+
+    color:
+        white;
+
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+}
+
+
+
+
+
+
+.auth-card input {
+
+    width:
+        100%;
+
+
+    padding:
+        14px;
+
+
+    margin-bottom:
+        14px;
+
+
+    border-radius:
+        14px;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    background:
+        #090910;
+
+
+    color:
+        white;
+
+
+    outline:
+        none;
+
+}
+
+
+
+.auth-card input:focus {
+
+    border-color:
+        var(--purple);
+
+}
+
+
+
+
+
+
+.auth-card form button {
+
+    width:
+        100%;
+
+
+    padding:
+        14px;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+
+    color:
+        white;
+
+
+    font-weight:
+        700;
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+.auth-card form button:hover {
+
+    transform:
+        translateY(-2px);
+
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            139,
+            92,
+            246,
+            .35
+        );
+
+}
+/* ==========================================================
+   Основное приложение
+   ========================================================== */
+
+
+#app {
+
+    min-height:
+        100vh;
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   Верхняя панель
+   ========================================================== */
+
+
+.topbar {
+
+    position:
+        sticky;
+
+
+    top:
+        0;
+
+
+    z-index:
+        50;
+
+
+    height:
+        70px;
+
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        space-between;
+
+
+    padding:
+        0 30px;
+
+
+    background:
+        rgba(
+            7,
+            7,
+            11,
+            .8
+        );
+
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+
+    backdrop-filter:
+        blur(18px);
+
+}
+
+
+
+
+
+.logo {
+
+    font-size:
+        26px;
+
+
+    font-weight:
+        900;
+
+
+    letter-spacing:
+        -1px;
+
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+
+    -webkit-background-clip:
+        text;
+
+
+    color:
+        transparent;
+
+}
+
+
+
+
+
+
+.topbar button {
+
+    background:
+        #15151f;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    color:
+        white;
+
+
+    padding:
+        10px 18px;
+
+
+    border-radius:
+        14px;
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+
+.topbar button:hover {
+
+    background:
+        var(--card-hover);
+
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Главный layout
+   ========================================================== */
+
+
+.layout {
+
+    max-width:
+        1250px;
+
+
+    margin:
+        25px auto;
+
+
+    padding:
+        0 20px;
+
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+
+        260px
+        minmax(
+            300px,
+            650px
+        )
+        260px;
+
+
+    gap:
+        25px;
+
+}
+
+
+
+
+
+
+
+.left-sidebar,
+.right-sidebar {
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    gap:
+        18px;
+
+}
+
+
+
+
+
+.sidebar-block,
+.profile-mini,
+.create-chirp {
+
+    background:
+        var(--card);
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    border-radius:
+        22px;
+
+
+    padding:
+        20px;
+
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   Мини профиль
+   ========================================================== */
+
+
+.mini-emoji {
+
+    font-size:
+        55px;
+
+
+    text-align:
+        center;
+
+
+    margin-bottom:
+        12px;
+
+}
+
+
+
+
+.profile-mini h3 {
+
+    text-align:
+        center;
+
+
+    font-size:
+        20px;
+
+}
+
+
+
+
+.profile-mini p {
+
+    text-align:
+        center;
+
+
+    color:
+        var(--muted);
+
+
+    margin-top:
+        8px;
+
+
+    line-height:
+        1.4;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Создание поста
+   ========================================================== */
+
+
+.create-chirp textarea {
+
+    width:
+        100%;
+
+
+    min-height:
+        120px;
+
+
+    resize:
+        vertical;
+
+
+    padding:
+        15px;
+
+
+    border-radius:
+        16px;
+
+
+    background:
+        #090910;
+
+
+    color:
+        white;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    outline:
+        none;
+
+
+    font-size:
+        15px;
+
+}
+
+
+
+
+
+.create-chirp textarea:focus {
+
+    border-color:
+        var(--purple);
+
+}
+
+
+
+
+
+
+.post-tools {
+
+    margin-top:
+        15px;
+
+
+    display:
+        flex;
+
+
+    justify-content:
+        space-between;
+
+
+    align-items:
+        center;
+
+}
+
+
+
+
+
+
+
+.post-tools button,
+.upload-btn {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+
+    color:
+        white;
+
+
+    padding:
+        10px 16px;
+
+
+    border-radius:
+        14px;
+
+
+    font-weight:
+        700;
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+
+
+.post-tools button:hover,
+.upload-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+
+}
+
+
+
+
+
+
+
+#charCounter {
+
+    color:
+        var(--muted);
+
+
+    font-size:
+        14px;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Превью изображения
+   ========================================================== */
+
+
+.image-preview {
+
+    margin-top:
+        15px;
+
+
+    position:
+        relative;
+
+}
+
+
+
+.image-preview img {
+
+    width:
+        100%;
+
+
+    border-radius:
+        18px;
+
+
+}
+
+
+
+.image-preview button {
+
+    position:
+        absolute;
+
+
+    top:
+        10px;
+
+
+    right:
+        10px;
+
+
+    width:
+        35px;
+
+
+    height:
+        35px;
+
+
+    border-radius:
+        50%;
+
+
+    background:
+        var(--red);
+
+
+    color:
+        white;
+
+
+}
+/* ==========================================================
+   Вкладки ленты
+   ========================================================== */
+
+
+.feed-tabs {
+
+    display:
+        flex;
+
+
+    gap:
+        10px;
+
+
+    margin:
+        20px 0;
+
+}
+
+
+
+.feed-tab {
+
+    flex:
+        1;
+
+
+    padding:
+        12px;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        var(--card);
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    color:
+        var(--muted);
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+
+.feed-tab:hover {
+
+    background:
+        var(--card-hover);
+
+}
+
+
+
+.feed-tab.active {
+
+    color:
+        white;
+
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Контейнер постов
+   ========================================================== */
+
+
+#feedContainer {
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    gap:
+        18px;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Карточка поста
+   ========================================================== */
+
+
+.chirp-card {
+
+    position:
+        relative;
+
+
+    background:
+        var(--card);
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    border-radius:
+        22px;
+
+
+    padding:
+        20px;
+
+
+    box-shadow:
+        var(--shadow);
+
+
+    animation:
+        postAppear .35s ease;
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+.chirp-card:hover {
+
+    transform:
+        translateY(-2px);
+
+
+    background:
+        var(--card-hover);
+
+}
+
+
+
+
+
+@keyframes postAppear {
+
+
+    from {
+
+        opacity:
+            0;
+
+
+        transform:
+            translateY(15px);
+
+    }
+
+
+    to {
+
+        opacity:
+            1;
+
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Заголовок поста
+   ========================================================== */
+
+
+.chirp-header {
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    gap:
+        12px;
+
+
+    margin-bottom:
+        15px;
+
+}
+
+
+
+
+.emoji {
+
+    font-size:
+        32px;
+
+}
+
+
+
+
+
+.chirp-header b {
+
+    font-size:
+        16px;
+
+}
+
+
+
+
+
+
+/* Галочка */
+
+.verified-badge {
+
+    display:
+        inline-flex;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        center;
+
+
+    margin-left:
+        5px;
+
+
+    width:
+        18px;
+
+
+    height:
+        18px;
+
+
+    border-radius:
+        50%;
+
+
+    background:
+        #2196f3;
+
+
+    font-size:
+        12px;
+
+
+    color:
+        white;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Текст поста
+   ========================================================== */
+
+
+.chirp-content {
+
+    line-height:
+        1.6;
+
+
+    font-size:
+        16px;
+
+
+    margin-bottom:
+        15px;
+
+
+    word-break:
+        break-word;
+
+}
+
+
+
+
+.hashtag {
+
+    color:
+        var(--blue);
+
+
+    cursor:
+        pointer;
+
+}
+
+
+
+
+.hashtag:hover {
+
+    text-decoration:
+        underline;
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   Фото поста
+   ========================================================== */
+
+
+.chirp-image {
+
+    width:
+        100%;
+
+
+    border-radius:
+        18px;
+
+
+    margin:
+        12px 0;
+
+
+    max-height:
+        500px;
+
+
+    object-fit:
+        cover;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   ID поста
+   ========================================================== */
+
+
+.chirp-card small {
+
+    display:
+        block;
+
+
+    margin-top:
+        10px;
+
+
+    color:
+        #666;
+
+
+    font-size:
+        11px;
+
+
+    cursor:
+        pointer;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Кнопки действий
+   ========================================================== */
+
+
+.chirp-actions {
+
+    display:
+        flex;
+
+
+    gap:
+        8px;
+
+
+    margin-top:
+        15px;
+
+}
+
+
+
+
+.chirp-actions button {
+
+    flex:
+        1;
+
+
+    padding:
+        10px;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        #191923;
+
+
+    color:
+        white;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+
+
+.chirp-actions button:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+
+
+.chirp-actions button[data-action="like"]:hover {
+
+    color:
+        #ff4567;
+
+}
+
+
+
+.chirp-actions button[data-action="dislike"]:hover {
+
+    color:
+        #22d3ee;
+
+}
+
+
+
+.chirp-actions button[data-action="rechirp"]:hover {
+
+    color:
+        #22c55e;
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Streak посты
+   ========================================================== */
+
+
+.chirp-card.streak {
+
+    border-color:
+        #ff4400;
+
+
+    box-shadow:
+
+        0 0 30px
+
+        rgba(
+            255,
+            68,
+            0,
+            .35
+        );
+
+}
+
+
+
+.chirp-card.streak::after {
+
+    content:
+        "🔥";
+
+
+    position:
+        absolute;
+
+
+    right:
+        20px;
+
+
+    top:
+        20px;
+
+
+    font-size:
+        22px;
+
+}
+/* ==========================================================
+   Модальные окна
+   ========================================================== */
+
+
+.modal {
+
+    position:
+        fixed;
+
+
+    inset:
+        0;
+
+
+    z-index:
+        100;
+
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        center;
+
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            .75
+        );
+
+
+    backdrop-filter:
+        blur(12px);
+
+}
+
+
+
+
+
+
+
+.modal-box {
+
+    width:
+        90%;
+
+
+    max-width:
+        520px;
+
+
+    max-height:
+        90vh;
+
+
+    overflow-y:
+        auto;
+
+
+    background:
+        var(--card);
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    border-radius:
+        25px;
+
+
+    padding:
+        25px;
+
+
+    box-shadow:
+        var(--shadow);
+
+
+    animation:
+        modalShow .25s ease;
+
+}
+
+
+
+
+
+@keyframes modalShow {
+
+
+    from {
+
+        opacity:
+            0;
+
+
+        transform:
+            scale(.95);
+
+    }
+
+
+    to {
+
+        opacity:
+            1;
+
+
+        transform:
+            scale(1);
+
+    }
+
+
+}
+
+
+
+
+
+.modal-close {
+
+    position:
+        absolute;
+
+
+    right:
+        20px;
+
+
+    top:
+        20px;
+
+
+    width:
+        35px;
+
+
+    height:
+        35px;
+
+
+    border-radius:
+        50%;
+
+
+    background:
+        #191923;
+
+
+    color:
+        white;
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Комментарии
+   ========================================================== */
+
+
+#commentsList {
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    gap:
+        12px;
+
+
+    margin:
+        20px 0;
+
+}
+
+
+
+
+.comment-item {
+
+    background:
+        #191923;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    padding:
+        15px;
+
+
+    border-radius:
+        16px;
+
+}
+
+
+
+.comment-item b {
+
+    font-size:
+        14px;
+
+}
+
+
+
+.comment-item p {
+
+    margin-top:
+        8px;
+
+
+    color:
+        #ddd;
+
+}
+
+
+
+
+
+
+.comment-form {
+
+    display:
+        flex;
+
+
+    gap:
+        10px;
+
+}
+
+
+
+.comment-form input {
+
+    flex:
+        1;
+
+
+    padding:
+        12px;
+
+
+    background:
+        #090910;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    color:
+        white;
+
+
+    border-radius:
+        14px;
+
+}
+
+
+
+.comment-form button {
+
+    padding:
+        12px 18px;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+
+    color:
+        white;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Профиль
+   ========================================================== */
+
+
+.profile-box {
+
+    text-align:
+        center;
+
+}
+
+
+
+
+.profile-emoji {
+
+    font-size:
+        85px;
+
+
+    margin-bottom:
+        10px;
+
+}
+
+
+
+
+
+.profile-box h2 {
+
+    font-size:
+        26px;
+
+}
+
+
+
+
+
+.profile-bio {
+
+    margin:
+        15px 0;
+
+
+    color:
+        var(--muted);
+
+
+    line-height:
+        1.5;
+
+}
+
+
+
+
+
+.profile-box button {
+
+    width:
+        100%;
+
+
+    padding:
+        13px;
+
+
+    margin-top:
+        10px;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+
+    color:
+        white;
+
+
+    font-weight:
+        700;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Редактирование профиля
+   ========================================================== */
+
+
+#editProfileModal input,
+#editProfileModal textarea {
+
+    width:
+        100%;
+
+
+    padding:
+        14px;
+
+
+    margin:
+        8px 0;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        #090910;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    color:
+        white;
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Админ панель
+   ========================================================== */
+
+
+.admin-box {
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    gap:
+        10px;
+
+}
+
+
+
+
+.admin-box input,
+.admin-box textarea {
+
+    width:
+        100%;
+
+
+    padding:
+        13px;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        #090910;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    color:
+        white;
+
+}
+
+
+
+
+
+.admin-box button {
+
+    padding:
+        13px;
+
+
+    border-radius:
+        14px;
+
+
+    background:
+        var(--purple);
+
+
+    color:
+        white;
+
+
+    font-weight:
+        700;
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+
+
+.admin-box button:hover {
+
+    background:
+        #9b7cff;
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   Бан и предупреждение
+   ========================================================== */
+
+
+#banScreen {
+
+    background:
+        #1a0000;
+
+}
+
+
+
+#warningScreen {
+
+    background:
+        #1a1a2e;
+
+}
+
+
+
+
+.ban-box,
+.warning-box {
+
+    text-align:
+        center;
+
+
+    padding:
+        35px;
+
+
+    border-radius:
+        25px;
+
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .05
+        );
+
+
+    border:
+        1px solid
+        var(--border);
+
+}
+
+
+
+.ban-box h1,
+.warning-box h1 {
+
+    font-size:
+        40px;
+
+
+    margin-bottom:
+        15px;
+
+}
+/* ==========================================================
+   Toast уведомления
+   ========================================================== */
+
+
+#toastContainer {
+
+    position:
+        fixed;
+
+
+    left:
+        50%;
+
+
+    bottom:
+        25px;
+
+
+    transform:
+        translateX(-50%);
+
+
+    z-index:
+        300;
+
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    gap:
+        10px;
+
+}
+
+
+
+
+
+.toast {
+
+    background:
+        #191923;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    color:
+        white;
+
+
+    padding:
+        14px 22px;
+
+
+    border-radius:
+        16px;
+
+
+    box-shadow:
+        var(--shadow);
+
+
+    animation:
+        toastShow .3s ease;
+
+}
+
+
+
+
+
+
+@keyframes toastShow {
+
+
+    from {
+
+        opacity:
+            0;
+
+
+        transform:
+            translateY(30px);
+
+    }
+
+
+
+    to {
+
+        opacity:
+            1;
+
+
+        transform:
+            translateY(0);
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Тренды
+   ========================================================== */
+
+
+#trendsList {
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    gap:
+        10px;
+
+}
+
+
+
+
+.trend-item {
+
+    display:
+        flex;
+
+
+    justify-content:
+        space-between;
+
+
+    align-items:
+        center;
+
+
+    padding:
+        12px;
+
+
+    background:
+        #191923;
+
+
+    border:
+        1px solid
+        var(--border);
+
+
+    border-radius:
+        14px;
+
+
+    cursor:
+        pointer;
+
+
+    transition:
+        .25s;
+
+}
+
+
+
+
+.trend-item:hover {
+
+    background:
+        var(--card-hover);
+
+
+    transform:
+        translateX(3px);
+
+}
+
+
+
+
+
+.trend-item span {
+
+    color:
+        var(--muted);
+
+
+    font-size:
+        13px;
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Скролл
+   ========================================================== */
+
+
+::-webkit-scrollbar {
+
+    width:
+        8px;
+
+}
+
+
+
+::-webkit-scrollbar-track {
+
+    background:
+        var(--bg);
+
+}
+
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        #333344;
+
+
+    border-radius:
+        20px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        var(--purple);
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Мобильная версия
+   ========================================================== */
+
+
+@media(max-width:1000px){
+
+
+    .layout {
+
+
+        display:
+            block;
+
+
+        max-width:
+            700px;
+
+
+    }
+
+
+
+
+    .left-sidebar,
+    .right-sidebar {
+
+
+        display:
+            none;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+    .topbar {
+
+
+        height:
+            60px;
+
+
+        padding:
+            0 15px;
+
+
+    }
+
+
+
+
+    .logo {
+
+
+        font-size:
+            22px;
+
+
+    }
+
+
+
+
+    .topbar button {
+
+
+        padding:
+            8px 12px;
+
+
+        font-size:
+            13px;
+
+
+    }
+
+
+
+
+
+    .layout {
+
+
+        padding:
+            0 10px;
+
+
+        margin:
+            15px auto;
+
+
+    }
+
+
+
+
+
+    .auth-card {
+
+
+        width:
+            100%;
+
+
+        padding:
+            25px;
+
+
+    }
+
+
+
+
+
+    .feed-tabs {
+
+
+        gap:
+            6px;
+
+
+    }
+
+
+
+
+
+    .feed-tab {
+
+
+        padding:
+            10px 5px;
+
+
+        font-size:
+            13px;
+
+
+    }
+
+
+
+
+
+    .chirp-card {
+
+
+        padding:
+            15px;
+
+
+        border-radius:
+            18px;
+
+
+    }
+
+
+
+
+
+    .chirp-actions {
+
+
+        gap:
+            5px;
+
+
+    }
+
+
+
+
+
+    .chirp-actions button {
+
+
+        font-size:
+            13px;
+
+
+        padding:
+            9px 5px;
+
+
+    }
+
+
+
+
+
+    .modal-box {
+
+
+        width:
+            95%;
+
+
+        padding:
+            20px;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Маленькие экраны iPhone
+   ========================================================== */
+
+
+@media(max-width:380px){
+
+
+    .topbar {
+
+
+        padding:
+            0 10px;
+
+
+    }
+
+
+
+
+    .logo {
+
+
+        font-size:
+            20px;
+
+
+    }
+
+
+
+
+    .chirp-actions button {
+
+
+        font-size:
+            11px;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   Утилиты
+   ========================================================== */
+
+
+.flex {
+
+    display:
+        flex;
+
+}
+
+
+
+.center {
+
+    align-items:
+        center;
+
+
+    justify-content:
+        center;
+
+}
