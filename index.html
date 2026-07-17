@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NobuChirp</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- Загрузка -->
+
+<div id="loadingScreen" class="screen">
+
+    <div class="loader">
+        NobuChirp
+    </div>
+
+</div>
+
+
+
+<!-- Авторизация -->
+
+<section id="authScreen" class="screen hidden">
+
+
+<div class="auth-card">
+
+
+<h1>
+    NobuChirp
+</h1>
+
+
+<div class="auth-tabs">
+
+<button id="loginTab" class="active">
+Вход
+</button>
+
+
+<button id="registerTab">
+Регистрация
+</button>
+
+</div>
+
+
+
+<form id="authForm">
+
+
+<input
+id="nicknameInput"
+type="text"
+placeholder="Никнейм"
+autocomplete="off"
+>
+
+
+<input
+id="passwordInput"
+type="password"
+placeholder="Пароль"
+>
+
+
+<button id="authSubmitBtn">
+Войти
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- Бан -->
+
+
+<section id="banScreen" class="screen hidden ban-screen">
+
+
+<div class="ban-card">
+
+
+<div class="ban-icon">
+🚫
+</div>
+
+
+<h2>
+Аккаунт заблокирован
+</h2>
+
+
+<p id="banReason">
+Причина
+</p>
+
+
+<p id="banExpires">
+Срок
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- Предупреждение -->
+
+
+<section id="warningScreen" class="screen hidden warning-screen">
+
+
+<div class="warning-card">
+
+
+<div>
+⚠️
+</div>
+
+
+<h2>
+Предупреждение
+</h2>
+
+
+<p id="warningMessage"></p>
+
+
+<div id="warningCountdown">
+03:00
+</div>
+
+
+<button id="warningAcceptBtn" disabled>
+
+Я прочитал(а)
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- Основное приложение -->
+
+
+<div id="app" class="hidden">
+
+
+
+<header class="topbar">
+
+
+<div class="logo">
+NobuChirp
+</div>
+
+
+<button id="profileButton">
+Профиль
+</button>
+
+
+<button id="adminButton" class="hidden">
+Админ
+</button>
+
+
+<button id="logoutButton">
+Выйти
+</button>
+
+
+</header>
+
+
+
+<main class="layout">
+<!-- Левая панель -->
+
+<aside class="left-sidebar">
+
+
+<div class="profile-mini">
+
+
+<div id="miniEmoji" class="mini-emoji">
+😀
+</div>
+
+
+<h3 id="miniNickname">
+Пользователь
+</h3>
+
+
+<p id="miniBio">
+Нет описания
+</p>
+
+
+</div>
+
+
+
+<div class="sidebar-block">
+
+
+<button id="profileButton">
+Открыть профиль
+</button>
+
+
+</div>
+
+
+</aside>
+
+
+
+
+
+<!-- Центральная часть -->
+
+
+<section class="center-content">
+
+
+
+<!-- Создание поста -->
+
+
+<div class="create-chirp">
+
+
+
+<textarea
+
+id="chirpInput"
+
+maxlength="280"
+
+placeholder="Что нового?"
+
+></textarea>
+
+
+
+<div class="post-tools">
+
+
+<span id="charCounter">
+280
+</span>
+
+
+<label class="upload-btn">
+
+
+📷 Фото
+
+
+<input
+
+id="imageInput"
+
+type="file"
+
+accept="image/*"
+
+hidden
+
+>
+
+
+</label>
+
+
+
+<button id="publishButton">
+
+Опубликовать
+
+</button>
+
+
+</div>
+
+
+
+
+<div id="imagePreview" class="image-preview hidden">
+
+
+<img
+
+id="previewImage"
+
+src=""
+
+alt="preview"
+
+>
+
+
+<button id="removeImageButton">
+
+✕
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- Вкладки -->
+
+
+<div class="feed-tabs">
+
+
+<button
+
+class="feed-tab active"
+
+data-feed="all"
+
+>
+
+Все
+
+</button>
+
+
+
+<button
+
+class="feed-tab"
+
+data-feed="following"
+
+>
+
+Подписки
+
+</button>
+
+
+
+<button
+
+class="feed-tab"
+
+data-feed="trends"
+
+>
+
+Тренды
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- Лента -->
+
+
+<div id="feedContainer">
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+<!-- Правая панель -->
+
+
+<aside class="right-sidebar">
+
+
+
+<div class="sidebar-block">
+
+
+<h3>
+🔥 Тренды
+</h3>
+
+
+<div id="trendsList">
+
+</div>
+
+
+</div>
+
+
+
+</aside>
+
+
+
+</main>
+
+
+</div>
