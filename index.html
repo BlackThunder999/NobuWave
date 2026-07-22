@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOBUQR.SPACE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header" id="mainHeader" style="display:none;">
+            <span class="logo">NOBUQR<span>.</span>SPACE</span>
+            <button onclick="logout()" class="btn-outline">Выйти</button>
+        </header>
+
+        <main class="main">
+            <!-- АВТОРИЗАЦИЯ -->
+            <div id="authScreen" class="screen active">
+                <div class="auth-card">
+                    <h1 class="auth-logo">NOBUQR<span>.</span>SPACE</h1>
+                    <p class="auth-subtitle">Стеклянная соцсеть</p>
+                    
+                    <div class="auth-tabs">
+                        <button id="tabLogin" class="tab active" onclick="showAuthTab('login')">Вход</button>
+                        <button id="tabRegister" class="tab" onclick="showAuthTab('register')">Регистрация</button>
+                    </div>
+
+                    <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
+                        <input type="email" id="loginEmail" placeholder="Email" required>
+                        <input type="password" id="loginPassword" placeholder="Пароль" required>
+                        <button type="submit" class="btn">Войти</button>
+                        <button type="button" class="btn-link" onclick="showResetPassword()">Забыли пароль?</button>
+                    </form>
+
+                    <form id="registerForm" class="auth-form" onsubmit="handleRegister(event)">
+                        <input type="email" id="regEmail" placeholder="Email" required>
+                        <input type="text" id="regNickname" placeholder="Никнейм" required>
+                        <input type="password" id="regPassword" placeholder="Пароль (мин. 6)" minlength="6" required>
+                        <input type="date" id="regBirth" required>
+                        <label class="check-label">
+                            <input type="checkbox" id="acceptTerms" required>
+                            Принимаю <a href="#" onclick="showDoc('terms')">условия</a>
+                        </label>
+                        <button type="submit" class="btn">Создать аккаунт</button>
+                    </form>
+
+                    <div id="verifySection" style="display:none;">
+                        <h2>🔐 Подтверждение</h2>
+                        <p>Код отправлен на <strong id="verifyEmail"></strong></p>
+                        <input type="text" id="verifyCode" placeholder="6 цифр" maxlength="6">
+                        <button class="btn" onclick="verifyEmail()">Подтвердить</button>
+                    </div>
+
+                    <div id="resetSection" style="display:none;">
+                        <h2>🔑 Сброс пароля</h2>
+                        <input type="email" id="resetEmail" placeholder="Email">
+                        <button class="btn" onclick="sendResetCode()">Отправить код</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ЛЕНТА -->
+            <div id="feedScreen" class="screen">
+                <div class="create-box">
+                    <textarea id="postText" placeholder="Что происходит?" maxlength="280" oninput="countChars()"></textarea>
+                    <div id="mediaPreview" class="media-preview" style="display:none;"></div>
+                    <div class="create-row">
+                        <div class="media-btns">
+                            <button onclick="pickMedia('image')">📷</button>
+                            <button onclick="pickMedia('video')">🎥</button>
+                            <input type="file" id="imageInput" accept="image/*" style="display:none;" onchange="previewFile('image')">
+                            <input type="file" id="videoInput" accept="video/*" style="display:none;" onchange="previewFile('video')">
+                        </div>
+                        <span id="charCount" class="char-count">0/280</span>
+                        <button id="postBtn" class="btn btn-sm" onclick="createPost()" disabled>Пост</button>
+                    </div>
+                </div>
+                <div id="postsContainer"></div>
+            </div>
+
+            <!-- ПОИСК -->
+            <div id="searchScreen" class="screen">
+                <input type="text" id="searchInput" placeholder="Поиск по хештегам..." oninput="searchHash()">
+                <div id="searchResults"></div>
+            </div>
+
+            <!-- ПРОФИЛЬ -->
+            <div id="profileScreen" class="screen">
+                <div id="profileCard"></div>
+                <div id="profilePosts"></div>
+            </div>
+
+            <!-- АДМИН -->
+            <div id="adminScreen" class="screen">
+                <div id="adminLoginForm" class="auth-card">
+                    <h2>Админ</h2>
+                    <input type="password" id="adminPass" placeholder="Пароль">
+                    <button class="btn" onclick="adminLogin()">Войти</button>
+                </div>
+                <div id="adminPanel" style="display:none;">
+                    <div class="admin-nav">
+                        <button onclick="loadAdmin('users')">Пользователи</button>
+                        <button onclick="loadAdmin('reports')">Жалобы</button>
+                        <button onclick="loadAdmin('messages')">Обращения</button>
+                        <button onclick="loadAdmin('banned')">IP баны</button>
+                        <button class="btn-danger" onclick="massReset()">Сброс сессий</button>
+                    </div>
+                    <div id="adminData"></div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav" id="bottomNav" style="display:none;">
+            <button onclick="showScreen('feedScreen')" class="nav-item active">🏠</button>
+            <button onclick="showScreen('searchScreen')" class="nav-item">🔍</button>
+            <button onclick="showScreen('profileScreen')" class="nav-item">👤</button>
+            <button onclick="showScreen('adminScreen')" class="nav-item" id="adminNavBtn" style="display:none;">⚙️</button>
+        </nav>
+    </div>
+
+    <div id="modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
